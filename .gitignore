@@ -1,0 +1,5 @@
+data/
+.bash_history
+.mysql_history
+.psql_history
+.cache

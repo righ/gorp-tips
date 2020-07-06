@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  app:
+    container_name: gorp
+    volumes:
+      - ./:/root/
+    working_dir: /root/
+    build: .
+    tty: true
+    networks:
+      - gorp-network
+    command: >
+      bash -c "
+      bash wait-for-mysql.sh mysql &&
+      mysql -uusr -ppw -hmysql db < schema.sql 2>/dev/null || true &&
+      mysql -uusr -ppw -hmysql db < data.sql 2>/dev/null || true &&
+      read"
+
+  mysql:
+    image: mariadb:latest
+    container_name: gorp-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: usr
+      MYSQL_PASSWORD: pw
+    volumes:
+      - ./data/mysql/:/var/lib/
+    networks:
+      - gorp-network
+
+networks:
+  gorp-network:
+
