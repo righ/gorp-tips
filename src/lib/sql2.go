@@ -1,4 +1,4 @@
-package sql
+package lib
 
 import (
 	"bytes"
@@ -6,12 +6,12 @@ import (
 	"os"
 	"text/template"
 
-	_ "gorp-with-template/sql/statik"
+	_ "gorp-with-template/lib/statik"
 
 	"github.com/rakyll/statik/fs"
 )
 
-//go:generate statik -f -src=../files -m
+//go:generate statik -f -src=../sql -m
 
 var files, _ = fs.New()
 

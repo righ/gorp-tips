@@ -1,4 +1,4 @@
-package sql
+package lib
 
 import (
 	"bytes"
@@ -7,7 +7,7 @@ import (
 
 func GetSQL(filename string, req interface{}) string {
 	var buf bytes.Buffer
-	t := template.Must(template.ParseFiles("files/" + filename))
+	t := template.Must(template.ParseFiles("sql/" + filename))
 	t.Execute(&buf, req)
 	return buf.String()
 }

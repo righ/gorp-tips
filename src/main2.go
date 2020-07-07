@@ -9,7 +9,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/labstack/gommon/log"
 
-	sqllib "gorp-with-template/sql"
+	"gorp-with-template/lib"
 )
 
 func initDb() *gorp.DbMap {
@@ -50,7 +50,7 @@ func main() {
 		JetName:   *jetName,
 		Language:  *language,
 	}
-	query := sqllib.GetSQL2("query.sql", req)
+	query := lib.GetSQL2("query.sql", req)
 	log.Debug(query)
 
 	var results []Result
