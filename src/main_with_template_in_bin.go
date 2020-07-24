@@ -5,13 +5,14 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
-	"gorp-tips/controllers"
-	"gorp-tips/models"
-	"gorp-tips/repositories"
 
 	"github.com/go-gorp/gorp"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/labstack/gommon/log"
+
+	"gorp-tips/controllers"
+	"gorp-tips/models"
+	"gorp-tips/repositories"
 )
 
 func initDb() *gorp.DbMap {
@@ -38,7 +39,7 @@ func main() {
 		JetName:   *jetName,
 		Language:  *language,
 	}
-	repo := repositories.NewJetRepository(dbmap)
+	repo := repositories.NewJetRepository3(dbmap)
 	results, err := controllers.GetJets(context.Background(), repo, req)
 	if err != nil {
 		log.Fatal(err)

@@ -1,4 +1,4 @@
-package lib
+package db
 
 import (
 	"bytes"
@@ -6,7 +6,7 @@ import (
 	"os"
 	"text/template"
 
-	_ "gorp-with-template/lib/statik"
+	_ "gorp-tips/db/statik"
 
 	"github.com/rakyll/statik/fs"
 )

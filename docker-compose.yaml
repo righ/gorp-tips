@@ -13,7 +13,9 @@ services:
       bash -c "
       bash wait-for-mysql.sh mysql &&
       mysql -uusr -ppw -hmysql db < schema.sql 2>/dev/null || true &&
+      mysql -uusr -ppw -htesting_mysql db < schema.sql 2>/dev/null || true &&
       mysql -uusr -ppw -hmysql db < data.sql 2>/dev/null || true &&
+      go get github.com/rakyll/statik &&
       read"
 
   mysql:
@@ -26,6 +28,19 @@ services:
       MYSQL_PASSWORD: pw
     volumes:
       - ./data/mysql/:/var/lib/
+    networks:
+      - gorp-network
+
+  testing_mysql:
+    image: mariadb:latest
+    container_name: gorp-testing-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: usr
+      MYSQL_PASSWORD: pw
+    volumes:
+      - ./data/testing_mysql/:/var/lib/
     networks:
       - gorp-network
 

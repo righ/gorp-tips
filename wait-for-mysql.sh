@@ -10,5 +10,9 @@ until mysql -uusr -ppw -hmysql db -e 'show databases' 2>/dev/null; do
   sleep 1
 done
 
+until mysql -uusr -ppw -htesting_mysql db -e 'show databases' 2>/dev/null; do
+  sleep 1
+done
+
 >&2 echo "MySQL is up - executing command"
 exec $cmd

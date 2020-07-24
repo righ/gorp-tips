@@ -6,8 +6,8 @@ SELECT
   languages.language
 FROM jets
 JOIN pilots ON pilots.id = jets.pilot_id
-JOIN pilot_languages ON pilot_languages.pilot_id = jets.pilot_id
-JOIN languages ON languages.id = pilot_languages.language_id
+LEFT JOIN pilot_languages ON pilot_languages.pilot_id = jets.pilot_id
+LEFT JOIN languages ON languages.id = pilot_languages.language_id
 WHERE TRUE
   {{ if ne .Age 0 -}}
   AND jets.age = :age
@@ -21,5 +21,5 @@ WHERE TRUE
   {{if ne .Language "" -}}
   AND languages.language = :language
   {{- end}}
-ORDER BY jets.age
+ORDER BY jets.age, jets.id
 ;
