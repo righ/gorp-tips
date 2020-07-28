@@ -38,7 +38,7 @@ func main() {
 		JetName:   *jetName,
 		Language:  *language,
 	}
-	repo := repositories.NewJetRepository(dbmap)
+	repo := repositories.NewJetRepository0(dbmap)
 	results, err := controllers.GetJets(context.Background(), repo, req)
 	if err != nil {
 		log.Fatal(err)

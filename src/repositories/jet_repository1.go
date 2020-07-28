@@ -10,18 +10,18 @@ import (
 	"gorp-tips/models"
 )
 
-type jetRepository3 struct {
+type jetRepository1 struct {
 	exec gorp.SqlExecutor
 }
 
-func NewJetRepository3(exec gorp.SqlExecutor) JetRepository {
-	return &jetRepository3{
+func NewJetRepository1(exec gorp.SqlExecutor) JetRepository {
+	return &jetRepository1{
 		exec: exec,
 	}
 }
 
-func (r *jetRepository3) GetJets(ctx context.Context, req models.Request) ([]models.Result, error) {
-	query := db.GetSQL2("query.sql", req)
+func (r *jetRepository1) GetJets(ctx context.Context, req models.Request) ([]models.Result, error) {
+	query := db.GetSQL("query.sql", req)
 	log.Debug(query)
 
 	var results []models.Result

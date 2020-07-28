@@ -21,7 +21,7 @@ func NewJetRepository2(exec gorp.SqlExecutor) JetRepository {
 }
 
 func (r *jetRepository2) GetJets(ctx context.Context, req models.Request) ([]models.Result, error) {
-	query := db.GetSQL("query.sql", req)
+	query := db.GetSQL2("query.sql", req)
 	log.Debug(query)
 
 	var results []models.Result

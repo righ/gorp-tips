@@ -14,17 +14,17 @@ type JetRepository interface {
 	GetJets(ctx context.Context, req models.Request) ([]models.Result, error)
 }
 
-type jetRepository struct {
+type jetRepository0 struct {
 	exec gorp.SqlExecutor
 }
 
-func NewJetRepository(exec gorp.SqlExecutor) JetRepository {
-	return &jetRepository{
+func NewJetRepository0(exec gorp.SqlExecutor) JetRepository {
+	return &jetRepository0{
 		exec: exec,
 	}
 }
 
-func (r *jetRepository) GetJets(ctx context.Context, req models.Request) ([]models.Result, error) {
+func (r *jetRepository0) GetJets(ctx context.Context, req models.Request) ([]models.Result, error) {
 	query := "SELECT jets.name AS jetName, jets.age AS jetAge, jets.color AS jetColor, pilots.name AS pilotName, languages.language "
 	query += "FROM jets "
 	query += "JOIN pilots ON pilots.id = jets.pilot_id "
