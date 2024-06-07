@@ -15,11 +15,11 @@ services:
       mysql -uusr -ppw -hmysql db < schema.sql 2>/dev/null || true &&
       mysql -uusr -ppw -htesting_mysql db < schema.sql 2>/dev/null || true &&
       mysql -uusr -ppw -hmysql db < data.sql 2>/dev/null || true &&
-      go get github.com/rakyll/statik &&
+      #go get github.com/rakyll/statik &&
       read"
 
   mysql:
-    image: mariadb:latest
+    image: mysql:latest
     container_name: gorp-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -30,9 +30,11 @@ services:
       - ./data/mysql/:/var/lib/
     networks:
       - gorp-network
+    ports:
+      - "3306:3306"
 
   testing_mysql:
-    image: mariadb:latest
+    image: mysql:latest
     container_name: gorp-testing-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
