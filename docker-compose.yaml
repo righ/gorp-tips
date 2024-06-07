@@ -15,7 +15,6 @@ services:
       mysql -uusr -ppw -hmysql db < schema.sql 2>/dev/null || true &&
       mysql -uusr -ppw -htesting_mysql db < schema.sql 2>/dev/null || true &&
       mysql -uusr -ppw -hmysql db < data.sql 2>/dev/null || true &&
-      #go get github.com/rakyll/statik &&
       read"
 
   mysql:
